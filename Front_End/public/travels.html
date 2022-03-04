@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<title>SP Travel - Travel Listings</title>
+	<link rel="icon" href="/favicon/favicon.png" type="image/x-icon" />
+	<!-- Bootstrap core CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<!-- Custom styles for this template -->
+	<link href="/css/modern-business.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+	<!-- Navigation -->
+	<nav class="navbar border-bottom border-light fixed-top navbar-expand-lg fixed-top">
+		<div class="col-12 container">
+			<a class="navbar-brand col-4" href="/"><span id="SP-brand">SP </span><span id="Travel-brand">Travel</span></a>
+			<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+				data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse col-8" id="navbarResponsive">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item">
+						<!-- Welcome / Search for travel listings -->
+						<a class="nav-link" href="/">Homepage</a>
+					</li>
+					<li class="nav-item">
+						<!-- Display all travel listings -->
+						<a class="nav-link" href="/travels/">Travel Listings</a>
+					</li>
+					<li id="logout-button-bg" class="nav-item hide-logged-out">
+						<!-- Logout button (hide when logged out) -->
+						<a class="nav-link" id="logout-button" href="#">Logout</a>
+					</li>
+					<li class="nav-item hide-logged-in">
+						<!-- Login page (hide when logged in) -->
+						<a class="nav-link" href="/login/">Login</a>
+					</li>
+					<li class="nav-item hide-logged-out">
+						<!-- User's account page (hide when logged out) (fill in with username when logged in) -->
+						<a class="nav-link" href="/users/" id="account-button">User</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<!-- Content -->
+	<div id="content" class="row justify-content-center">
+		<!-- Welcome to travel listings -->
+		<h1 id="intro" class="col-10 my-4 px-0">Travel Listings</h1>
+		<!-- If come from search, display only found travel listings. Otherwise, display all. -->
+		<p id="no-results" class="col-10 px-0 pb-2 text-justify h4">No results here. <a href="/">Return to Homepage.</a></p>
+	</div>
+
+	<!-- Footer -->
+	<footer class="row mx-0 p-0 border-top border-light justify-content-center pt-3 ">
+		<div id="social" class="col-12 col-sm-6 col-md-4 text-center footerThings mb-4">
+			<p class="footer-heads h5 font-weight-bold"> Social Media </p>
+			<p class="mb-2"><a href="https://www.instagram.com/singaporepoly/"><img
+						src="/social_media_icons/instagram.png" class="img-thumbnail p-0 border-dark"
+						alt="Instagram logo" /> @SP_Travel_Official </a></p>
+			<p class="mb-0"><a href="https://twitter.com/SingaporePoly/"><img src="/social_media_icons/twitter.png"
+						class="img-thumbnail p-0 border-dark" alt="Twitter logo" /> @SP_Travel_Official </a></p>
+		</div>
+		<div id="hq" class="col-12 col-sm-6 col-md-4 text-center footerThings mb-4">
+			<p class="footer-heads h5 font-weight-bold"> Headquarters </p>
+			<address class="font-italic mb-0"> 108 Gerald Drive #04-38, 799035, Singapore </address>
+		</div>
+		<div id="contact" class="col-12 col-sm-6 col-md-4 text-center footerThings mb-4">
+			<p class="footer-heads h5 font-weight-bold"> Contact Details </p>
+			<p class="mb-2"> E-mail address: <a href="mailto: contact@sp_travel.com"> contact@sp_travel.com </a></p>
+			<p class="mb-0"> Number: <a href="tel: +65 1234 5678">+65 1234 5678</a></p>
+		</div>
+		<div id="footer-bottom" class="mb-1 col-12">
+			<div class="row justify-content-center">
+				<p class="col-6 col-md-4 mb-1 text-center">Copyright &copy; 2020 SP Travel Inc. All rights reserved.</p>
+			</div>
+		</div>
+	</footer>
+
+	<!--JavaScript files for website to run-->
+	<div>
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+			integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+			integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+			crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+			integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+			crossorigin="anonymous"></script>
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	</div>
+
+	<!-- Custom JavaScript files -->
+	<div>
+		<script src="/js/importantVariables.js"></script>
+		<script src="/js/logEffects.js"></script>
+		<script src="/js/logOut.js"></script>
+		<!-- Get travel listings that fit the search criteria -->
+        <script>
+			function fullMonth (partMonth) {
+				var shortFull = {
+					"Jan": "January",
+					"Feb": "February",
+					"Mar": "March",
+					"Apr": "April",
+					"May": "May",
+					"Jun": "June",
+					"Jul": "July",
+					"Aug": "August",
+					"Sep": "September",
+					"Oct": "October",
+					"Nov": "November",
+					"Dec": "December"
+				};
+				return shortFull[partMonth];
+			}
+            function truncateDesc (description) {
+				if (description.length <= 250) {
+					return description;
+				}
+				return description.slice(0, 250).split(" ").slice(0, -1).join(" ") + "...";
+			}
+			var searchQuery = url.pathname.split("/").filter((string) => string !== "").slice(1);
+            if (searchQuery.length !== 3) {
+				axios.get(`${baseUrl}/travels/`)
+					.then((response) => {
+						var travelListings = response.data;
+						travelListings.forEach((travelListing) => {
+							var travelListingHtml = 
+								`<div class="col-10 row travel-listing mb-3 border border-light">
+									<img class="col-lg-4 col-12 border border-light my-1 px-0" src="${baseUrl}/travels/${travelListing.travel_id}/images/showcase/">
+									<div class="col-lg-7 col-12 ml-lg-3 my-1 px-0">
+										<p class="h4"><a class="travel-listing-link" href="/travels/${travelListing.travel_id}/">${travelListing.title}</a> | ${travelListing.country}</p>
+										<p class="h4">$${parseFloat(travelListing.price).toFixed(2)}</p>
+										<p class="h4">${fullMonth(travelListing.travel_period.split(" ")[0])} ${travelListing.travel_period.split(" ")[1]}</p>
+										<p class="h5 mt-4">${truncateDesc(travelListing.description)}</p>
+									</div>
+								</div>`;
+							$("#content").append(travelListingHtml);
+						});
+						if ($(".travel-listing").length > 0) {
+							$("#no-results").hide();
+						}
+					})
+					.catch((err) => {
+						console.log(err);
+					});
+            } else {
+				$("#intro").append(" | Search Results");
+				var requestBody = {
+					"country": searchQuery[0].split("_").join(" "),
+					"price": searchQuery[1],
+					"travel_period": searchQuery[2].split("_").join(" ")
+				};
+				axios.get(`${baseUrl}/travels/search/${requestBody.country}/${requestBody.price}/${requestBody.travel_period}/`)
+					.then((response) => {
+						var travelListings = response.data;
+						travelListings.forEach((travelListing) => {
+							var travelListingHtml = 
+								`<div class="col-10 row travel-listing mb-3 border border-light">
+									<img class="col-lg-4 col-12 border border-light my-1 px-0" src="${baseUrl}/travels/${travelListing.travel_id}/images/showcase/" alt="Tour Package Showcase Image">
+									<div class="col-lg-7 col-12 ml-lg-3 my-1 px-0">
+										<p class="h4"><a href="/travels/${travelListing.travel_id}/">${travelListing.title}</a> | ${travelListing.country}</p>
+										<p class="h4">$${parseFloat(travelListing.price).toFixed(2)}</p>
+										<p class="h4">${fullMonth(travelListing.travel_period.split(" ")[0])} ${travelListing.travel_period.split(" ")[1]}</p>
+										<p class="h5 mt-4">${truncateDesc(travelListing.description)}</p>
+									</div>
+								</div>`;
+							$("#content").append(travelListingHtml);
+						});
+						if ($(".travel-listing").length > 0) {
+							$("#no-results").hide();
+						} 
+					})
+					.catch((err) => {
+						console.log(err);
+					});
+			}
+		</script>
+	</div>
+
+</body>
+
+</html>

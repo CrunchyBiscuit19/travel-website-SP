@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<title>SP Travel - Homepage</title>
+	<link rel="icon" href="/favicon/favicon.png" type="image/x-icon" />
+	<!-- Bootstrap core CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<!-- Custom styles for this template -->
+	<link rel="stylesheet" href="/css/modern-business.css">
+</head>
+
+<body>
+
+	<!-- Navigation -->
+	<nav class="navbar border-bottom border-light fixed-top navbar-expand-lg fixed-top">
+		<div class="col-12 container">
+			<a class="navbar-brand col-4" href="/"><span id="SP-brand">SP </span><span id="Travel-brand">Travel</span></a>
+			<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+				data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse col-8" id="navbarResponsive">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item">
+						<!-- Welcome / Search for travel listings -->
+						<a class="nav-link" href="/">Homepage</a>
+					</li>
+					<li class="nav-item">
+						<!-- Display all travel listings -->
+						<a class="nav-link" href="/travels/">Travel Listings</a>
+					</li>
+					<li id="logout-button-bg" class="nav-item hide-logged-out">
+						<!-- Logout button (hide when logged out) -->
+						<a class="nav-link" id="logout-button" href="#">Logout</a>
+					</li>
+					<li class="nav-item hide-logged-in">
+						<!-- Login page (hide when logged in) -->
+						<a class="nav-link" href="/login/">Login</a>
+					</li>
+					<li class="nav-item hide-logged-out">
+						<!-- User's account page (hide when logged out) (fill in with username when logged in) -->
+						<a class="nav-link" href="/users/" id="account-button">User</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<!-- Content -->
+	<div id="content" class="row justify-content-center">
+		<!-- Introduction to Web Portal -->
+		<h1 id="intro" class="col-10 my-4 px-0">Welcome to SP Travel</h1>
+		<!-- Latest travel listing's showcase image -->
+		<a id="latest-travel-listing-showcase-link" class="col-10 px-0 mx-3 travel-listing-link" href="/travels/"><img id="latest-travel-listing-showcase"
+				src="miscellaneous/default.jpg" alt="Showcase Image"></a>
+		<p id="latest-travel-listing-showcase-caption" class="col-10 h4 my-2 px-0">Our many tour packages can be searched for below.</p>
+		<!-- Search section -->
+		<h1 class="col-10 my-4 px-0">Search Tour Packages</h1>
+		<!-- When searched, redirect to travel listings page -->
+		<form name="search-form" id="search-form" class="col-10 w-100 my-2 px-0" enctype="multipart/form-data" method="POST" novalidate>
+			<div class="control-group form-group">
+				<div class="controls">
+					<label for="country-select" class="h4">Destination Country</label>
+					<select id="country-select" class="form-control mb-2" name="country-select">
+					</select>
+					<label for="max-cost" class="h4">Maximum Cost (SGD)</label>
+					<input id="max-cost" class="form-control mb-2" name="country-select" placeholder="Enter the maximum cost, in SGD">
+					<p id="max-cost-invalid" class="h5 invalid-message text-danger">You must either leave this empty, or enter the maximum cost.</p>
+					<div class="preferred-time col-4 pl-0 mr-3">
+						<label for="preferred-month" class="h4">Preferred Month</label>
+						<select id="preferred-month" class="form-control mb-2" name="preferred-month">
+						</select>
+					</div>
+					<div class="preferred-time col-4 pl-0 ml-3">
+						<label for="preferred-year" class="h4">Preferred Year</label>
+						<input id="preferred-year" class="form-control mb-2" name="preferred-year" placeholder="Enter your preferred year">
+						<p id="preferred-year-invalid" class="h5 invalid-message text-danger">You must enter a preferred year.</p>
+					</div>
+				</div>
+			</div>
+			<!-- Submit search queries -->
+			<button type="submit" class="col-4 my-2 h3 btn submit-buttons">Search</button>
+		</form>
+	</div>
+
+	<!-- Footer -->
+	<footer class="row mx-0 p-0 border-top border-light justify-content-center pt-3 ">
+		<div id="social" class="col-12 col-sm-6 col-md-4 text-center footerThings mb-4">
+			<p class="footer-heads h5 font-weight-bold"> Social Media </p>
+			<p class="mb-2"><a href="https://www.instagram.com/singaporepoly/"><img
+						src="/social_media_icons/instagram.png" class="img-thumbnail p-0 border-dark"
+						alt="Instagram logo" /> @SP_Travel_Official </a></p>
+			<p class="mb-0"><a href="https://twitter.com/SingaporePoly/"><img src="/social_media_icons/twitter.png"
+						class="img-thumbnail p-0 border-dark" alt="Twitter logo" /> @SP_Travel_Official </a></p>
+		</div>
+		<div id="hq" class="col-12 col-sm-6 col-md-4 text-center footerThings mb-4">
+			<p class="footer-heads h5 font-weight-bold"> Headquarters </p>
+			<address class="font-italic mb-0"> 108 Gerald Drive #04-38, 799035, Singapore </address>
+		</div>
+		<div id="contact" class="col-12 col-sm-6 col-md-4 text-center footerThings mb-4">
+			<p class="footer-heads h5 font-weight-bold"> Contact Details </p>
+			<p class="mb-2"> E-mail address: <a href="mailto: contact@sp_travel.com"> contact@sp_travel.com </a></p>
+			<p class="mb-0"> Number: <a href="tel: +65 1234 5678">+65 1234 5678</a></p>
+		</div>
+		<div id="footer-bottom" class="mb-1 col-12">
+			<div class="row justify-content-center">
+				<p class="col-6 col-md-4 mb-1 text-center">Copyright &copy; 2020 SP Travel Inc. All rights reserved.</p>
+			</div>
+		</div>
+	</footer>
+
+	<!--JavaScript files for website to run-->
+	<div>
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+			integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+			integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+			crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+			integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+			crossorigin="anonymous"></script>
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	</div>
+
+	<!-- Custom JavaScript files -->
+	<div>
+		<script src="/js/importantVariables.js"></script>
+		<script src="/js/logEffects.js"></script>
+		<script src="/js/logOut.js"></script>
+		<!-- Get latest travel listing -->
+		<script>
+			axios.get(`${baseUrl}/travels/last`)
+				.then((response) => {
+					var latestTravelListing = response.data;
+					var latestTravelTitle = latestTravelListing.title;
+					var latestTravelId = latestTravelListing.travel_id;
+					axios.get(`${baseUrl}/travels/${latestTravelId}/images/showcase/`)
+						.then((response) => {
+							if (response.data !== "" && response.status === 200) {
+								$("#latest-travel-listing-showcase").attr("src", `${baseUrl}/travels/${latestTravelId}/images/showcase/`);
+								$("#latest-travel-listing-showcase-link").attr("href", `/travels/${latestTravelId}/`);
+								$("#latest-travel-listing-showcase-caption").text("");
+								$("#latest-travel-listing-showcase-caption").append(`<a href="/travels/${latestTravelId}/" id="travel-listing-title" class="travel-listing-link">${latestTravelTitle}</a> tour has just been released. View its listing for more information.`);
+							}
+						})
+						.catch((err) => {
+							console.log(err);
+						});
+				})
+				.catch((err) => {
+					console.log(err);
+				});
+		</script>
+		<!-- Fill search form with available options -->
+		<script>
+			const countries = ["China", "India", "United States of America", "Indonesia", "Malaysia", "Pakistan", "Brazil", "Poland", "Armenia", "Japan", "Germany", "Singapore"].sort();
+			countries.forEach((country) => {
+				var countryHtml = 
+					`<option value="${country}">${country}</option>`;
+				$("#country-select").append(countryHtml);
+			});
+			const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+			months.forEach((month) => {
+				var monthHtml = 
+					`<option value="${month.slice(0, 3)}">${month}</option>`;
+				$("#preferred-month").append(monthHtml);
+			});
+		</script>
+		<!-- Search form validation and submission -->
+		<script>
+			$("#search-form").submit((event) => {
+				$(".invalid-message").hide();
+				event.preventDefault();
+				var country = $("#country-select").val();
+				var cost = $("#max-cost").val();
+				var month = $("#preferred-month").val();
+				var year = $("#preferred-year").val();
+				var yearRegex = new RegExp("^\\d+$");
+				var costRegex = new RegExp("^\\d*\\.?\\d*$");
+				if (cost.match(costRegex) === null && cost !== "") {
+					$("#max-cost-invalid").show();
+					return;
+				}
+				if (year.match(yearRegex) === null) {
+					$("#preferred-year-invalid").show();
+					return;
+				} 
+				cost = parseFloat(cost);
+				country = country.split(" ").join("_");
+				window.location.href = `/travels/${country}/${cost}/${month}_${year}/`;
+			});
+		</script>
+	</div>
+
+</body>
+
+</html>

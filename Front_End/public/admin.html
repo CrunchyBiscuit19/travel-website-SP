@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<title>SP Travel - Admin Dashboard</title>
+	<link rel="icon" href="/favicon/favicon.png" type="image/x-icon"/>
+	<!-- Bootstrap core CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<!-- Custom styles for this template -->
+	<link href="/css/modern-business.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+
+	<!-- Navigation -->
+	<nav class="navbar border-bottom border-light fixed-top navbar-expand-lg fixed-top">
+		<div class="col-12 container">
+			<a class="navbar-brand col-4" href="/"><span id="SP-brand">SP </span><span id="Travel-brand">Travel</span></a>
+			<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+				data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse col-8" id="navbarResponsive">
+				<ul class="navbar-nav ml-auto">
+					<li id="logout-button-bg" class="nav-item hide-logged-out">
+						<!-- Logout button (hide when logged out) -->
+						<a class="nav-link" id="logout-button" href="#">Logout</a>
+					</li>
+					<li class="nav-item hide-logged-in">
+						<!-- Login page (hide when logged in) -->
+						<a class="nav-link" href="/login/">Login</a>
+					</li>
+					<li class="nav-item hide-logged-out">
+						<!-- User's account page (hide when logged out) (fill in with username when logged in) -->
+						<a class="nav-link" href="/users/" id="account-button">User</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<!-- Content -->
+	<div id="content" class="row justify-content-center">
+		<!-- Introduction to Web Portal -->
+		<h1 id="intro" class="col-10 my-4 px-0">Admin Dashboard</h1>
+		<p class="h4 col-10 text-center my-3 px-0">Click title of tour package to edit. Click empty row to add new tour package.</p>
+		<table id="travel-listing-table" class="table table-bordered col-10 border border-light">
+			<thead>
+				<tr>
+					<th scope="col">Tour Title</th>
+					<th scope="col">Country</th>
+					<th scope="col">Tour Cost</th>
+					<th scope="col">Travel Period</th>
+					<th scope="col">Description</th>
+					<th scope="col">Days</th>
+					<th scope="col">Creation Time</th>
+				</tr>
+			</thead>
+			<tbody id="travel-listing-info">
+				<tr>
+					<th class="text-center" scope="row"><a class="travel-listing-link" href="/admin/add">Add Tour Package</a></th>
+					<th class="text-center">-</th>
+					<th class="text-center">-</th>
+					<th class="text-center">-</th>
+					<th class="text-center">-</th>
+					<th class="text-center">-</th>
+					<th class="text-center">-</th>					
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<!--JavaScript files for website to run-->
+	<div>
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+			integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+			integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+			crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+			integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+			crossorigin="anonymous"></script>
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	</div>
+
+	<!-- Custom JavaScript files -->
+	<div>
+		<script src="/js/importantVariables.js"></script>
+		<script src="/js/logEffects.js"></script>
+		<script src="/js/logOut.js"></script>
+		<!-- Load travel Listings -->
+        <script>
+			function timeStampTwelveHourClock (timeStampString) {
+				timeStampString.amOrPm = "AM";
+				timeStampString.getHoursInAmPm = () => {
+					if (timeStampString.getHours() >= 12) {
+						timeStampString.amOrPm = "PM";
+					}
+					if (timeStampString.getHours() % 12 == 0) {
+						return 12;
+					}
+					return timeStampString.getHours() % 12;
+				}
+				timeStampString.dateInGB = () => {
+					return `${timeStampString.getDate()}/${timeStampString.getMonth() + 1}/${timeStampString.getFullYear()}`;
+				}
+				timeStampString.showTimeInAmPm = () => {
+					return `${timeStampString.getHoursInAmPm()}:${timeStampString.getMinutes().toString().padStart(2, "0")} ${timeStampString.amOrPm}`;
+				}
+				return timeStampString;
+			}
+			// Verify that user is an admin
+			axios.get(`${baseUrl}/admin/verify`, 
+			{"headers": {"authorization": `Bearer ${token}`}})
+				.then((response) => {
+					// Get travel listings and display them
+					axios.get(`${baseUrl}/travels/`)
+						.then((response) => {
+							travels = response.data;
+							var regexPattern = new RegExp("(\\d)D\\dN");
+							travels.forEach((travel) => {
+								var createdAt = timeStampTwelveHourClock(new Date(Date.parse(travel.created_at)));
+								if (travel.description === "") {
+									travel.description = "-";
+								}
+								try {
+									travel.days = travel.title.match(regexPattern)[1];
+								} catch {
+									travel.days = "-";
+								}
+								travelHtml = 
+									`<tr>
+										<th class="text-center"><a class="travel-listing-link" href="/admin/manage/${travel.travel_id}">${travel.title}</a></th>
+										<th class="text-center">${travel.country}</th>
+										<th class="text-center">$${parseFloat(travel.price).toFixed(2)}</th>
+										<th class="text-center">${travel.travel_period}</th>
+										<th class="text-center">${travel.description}</th>
+										<th class="text-center">${travel.days}</th>
+										<th class="text-center">${createdAt.showTimeInAmPm()}</th>
+									</tr>`;
+								$("#travel-listing-info").append(travelHtml);
+							});
+						})
+						.catch((err) => {
+							console.log(err);
+						})	
+				})
+				.catch((err) => {
+					console.log(err);
+					if (err.response.status === 401 || err.response.status === 403) {
+						window.location.href = "/noPermission";
+					}
+				})
+		</script>
+    </div>
+
+</body>
+
+</html>

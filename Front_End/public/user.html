@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<title>SP Travel - User</title>
+	<link rel="icon" href="/favicon/favicon.png" type="image/x-icon" />
+	<!-- Bootstrap core CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<!-- Custom styles for this template -->
+	<link href="/css/modern-business.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+
+	<!-- Navigation -->
+	<nav class="navbar border-bottom border-light fixed-top navbar-expand-lg fixed-top">
+		<div class="col-12 container">
+			<a class="navbar-brand col-4" href="/"><span id="SP-brand">SP </span><span
+					id="Travel-brand">Travel</span></a>
+			<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+				data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse col-8" id="navbarResponsive">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item">
+						<!-- Welcome / Search for travel listings -->
+						<a class="nav-link" href="/">Homepage</a>
+					</li>
+					<li class="nav-item">
+						<!-- Display all travel listings -->
+						<a class="nav-link" href="/travels/">Travel Listings</a>
+					</li>
+					<li id="logout-button-bg" class="nav-item hide-logged-out">
+						<!-- Logout button (hide when logged out) -->
+						<a class="nav-link" id="logout-button" href="#">Logout</a>
+					</li>
+					<li class="nav-item hide-logged-in">
+						<!-- Login page (hide when logged in) -->
+						<a class="nav-link" href="/login/">Login</a>
+					</li>
+					<li class="nav-item hide-logged-out">
+						<!-- User's account page (hide when logged out) (fill in with username when logged in) -->
+						<a class="nav-link" href="/users/" id="account-button">User</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<!-- Content -->
+	<div id="content" class="row justify-content-center">
+		<!-- Introduction to Web Portal -->
+		<h1 id="intro" class="col-10 my-4 px-0">Welcome, user</h1>
+		<p class="h4 col-10 text-center my-3 px-0">Your Shopping Cart of Booked Tour Packages.</p>
+		<table id="travel-listing-table" class="table table-bordered mb-2 col-10 border border-light">
+			<thead>
+				<tr>
+					<th scope="col">Tour Title</th>
+					<th scope="col">Country</th>
+					<th scope="col">Tour Cost</th>
+					<th scope="col">Travel Period</th>
+					<th scope="col">Description</th>
+				</tr>
+			</thead>
+			<tbody id="travel-listing-info">
+				<tr>
+					<th class="text-center" scope="row">-</th>
+					<th class="text-center">-</th>
+					<th class="text-center">-</th>
+					<th class="text-center">-</th>
+					<th class="text-center">-</th>
+				</tr>
+			</tbody>
+		</table>
+		<p id="total-price" class="h4 col-10 font-weight-bold text-center mb-3 px-0"></p>
+		<button id="pay-button" type="button" class="col-10 col-sm-4 mb-2 btn submit-buttons">Confirm Payment</button>
+	</div>
+
+	<!-- Footer -->
+	<footer class="row mx-0 p-0 border-top border-light justify-content-center pt-3 ">
+		<div id="social" class="col-12 col-sm-6 col-md-4 text-center footerThings mb-4">
+			<p class="footer-heads h5 font-weight-bold"> Social Media </p>
+			<p class="mb-2"><a href="https://www.instagram.com/singaporepoly/"><img
+						src="/social_media_icons/instagram.png" class="img-thumbnail p-0 border-dark"
+						alt="Instagram logo" /> @SP_Travel_Official </a></p>
+			<p class="mb-0"><a href="https://twitter.com/SingaporePoly/"><img src="/social_media_icons/twitter.png"
+						class="img-thumbnail p-0 border-dark" alt="Twitter logo" /> @SP_Travel_Official </a></p>
+		</div>
+		<div id="hq" class="col-12 col-sm-6 col-md-4 text-center footerThings mb-4">
+			<p class="footer-heads h5 font-weight-bold"> Headquarters </p>
+			<address class="font-italic mb-0"> 108 Gerald Drive #04-38, 799035, Singapore </address>
+		</div>
+		<div id="contact" class="col-12 col-sm-6 col-md-4 text-center footerThings mb-4">
+			<p class="footer-heads h5 font-weight-bold"> Contact Details </p>
+			<p class="mb-2"> E-mail address: <a href="mailto: contact@sp_travel.com"> contact@sp_travel.com </a></p>
+			<p class="mb-0"> Number: <a href="tel: +65 1234 5678">+65 1234 5678</a></p>
+		</div>
+		<div id="footer-bottom" class="mb-1 col-12">
+			<div class="row justify-content-center">
+				<p class="col-6 col-md-4 mb-1 text-center">Copyright &copy; 2020 SP Travel Inc. All rights reserved.</p>
+			</div>
+		</div>
+	</footer>
+
+	<!--JavaScript files for website to run-->
+	<div>
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+			integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+			integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+			crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+			integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+			crossorigin="anonymous"></script>
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	</div>
+
+	<!-- Custom JavaScript files -->
+	<div>
+		<script src="/js/importantVariables.js"></script>
+		<script src="/js/logEffects.js"></script>
+		<script src="/js/logOut.js"></script>
+		<!-- Load travel Listings -->
+		<script>
+			axios.get(`${baseUrl}/users/${loggedInUserId}/`)
+				.then((response) => {
+					var userData = response.data;
+					$("title").text(`SP Travel - ${userData.username}`);
+					$("#intro").text(`Welcome, ${userData.username}`);
+				})
+				.catch((err) => {
+					console.log(err);
+				});
+			axios.get(`${baseUrl}/users/${loggedInUserId}/carts/`,
+				{ "headers": { "authorization": `Bearer ${token}` } })
+				.then((response) => {
+					var cartData = response.data;
+					if (cartData.length > 0) {
+						$("#travel-listing-info").empty();
+					}
+					var totalPrice = 0;
+					cartData.forEach((cartItem) => {
+						var travelId = cartItem.fk_travel_id;
+						axios.get(`${baseUrl}/travels/${travelId}`)
+							.then((response) => {
+								var travel = response.data;
+								totalPrice += parseFloat(travel.price);
+								var travelHtml =
+									`<tr>
+										<th class="text-center" scope="row"><a class="travel-listing-link" href="/travels/${travelId}/">${travel.title}</a></th>
+										<th class="text-center">${travel.country}</th>
+										<th class="text-center">$${parseFloat(travel.price).toFixed(2)}</th>
+										<th class="text-center">${travel.travel_period}</th>
+										<th class="text-center">${travel.description}</th>
+									</tr>`;
+								$("#travel-listing-info").append(travelHtml);
+								$("#total-price").text(`Total Price: $${totalPrice.toFixed(2)}`);
+							})
+							.catch((err) => {
+								console.log(err);
+							})
+					})
+				})
+				.catch((err) => {
+					console.log(err);
+					if (err.response.status === 401 || err.response.status === 403 || err.response.status === 400) {
+						window.location.href = "/noPermission";
+					}
+				});
+			$(document).on("click", "#pay-button", () => {
+				axios.get(`${baseUrl}/users/${loggedInUserId}/carts/`,
+					{ "headers": { "authorization": `Bearer ${token}` } })
+					.then((response) => {
+						var carts = response.data;
+						carts.forEach((cart) => {
+							axios.post(`${baseUrl}/users/${loggedInUserId}/travels/${cart.fk_travel_id}/purchases/`, {},
+								{ "headers": { "authorization": `Bearer ${token}` } })
+								.then((response) => {
+								})
+								.catch((err) => {
+									console.log(err);
+								});
+						});
+						axios.delete(`${baseUrl}/users/${loggedInUserId}/carts/`,
+							{ "headers": { "authorization": `Bearer ${token}` } })
+							.then((response) => {
+								location.reload();
+							})
+							.catch((err) => {
+								console.log(err);
+							});
+					})
+					.catch((err) => {
+						console.log(err);
+					});
+
+			});
+		</script>
+	</div>
+
+</body>
+
+</html>

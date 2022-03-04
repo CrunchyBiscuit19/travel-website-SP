@@ -1,0 +1,76 @@
+[
+    {
+        "comment": "users"
+    },
+
+    {
+        "user_id": 3,
+        "username": "Patriot Bushwacker",
+        "email": "bushwacker@patriot.com",
+        "profile_pic_url": "https://www.patriot.com/bushwacker.png",
+        "created_at": "1973-12-03 23:52:45"
+    },
+
+    {
+        "comment": "travels"
+    },
+
+    {
+        "travel_id": 3,
+        "title": "London 2D3N",
+        "description": "London is breathtaking.",
+        "price": 456.78,
+        "country": "United Kingdom",
+        "travel_period": "Mar 2021",
+        "created_at": "1973-12-03 23:52:45"
+    },
+
+    {
+        "comment": "itineraries"
+    },   
+
+    {
+        "itinerary_id": 3,
+        "fk_travel_id": 1,
+        "day": 3,
+        "activity": "Take part in some rock-climbing.",
+        "created_at": "1973-12-03 23:52:45"
+    },
+
+    {
+        "comment": "reviews"
+    },
+
+    {
+        "review_id": 3,
+        "fk_travel_id": 1,
+        "fk_user_id": 1,
+        "content": "The place is very calm and beautiful.",
+        "rating": 4.25,
+        "created_at": "1973-12-03 23:52:45"
+    },
+
+    {
+        "comment": "promotions"
+    },
+
+    {
+        "promotion_id": 3,
+        "fk_travel_id": 1,
+        "promotion_start": "2020-01-10 00:00:00", 
+        "promotion_end": "2020-01-15 23:59:59",
+        "discount_percentage": 25,
+        "created_at": "1973-12-03 23:52:45"
+    },
+
+    {
+        "comment": "images"
+    },
+
+    {
+        "image_id": 1,
+        "fk_travel_id": 3,
+        "image_path": "Car.jpg",
+        "created_at": "1973-12-03 23:52:45"
+    }
+]

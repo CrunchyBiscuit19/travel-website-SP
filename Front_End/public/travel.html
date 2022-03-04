@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<title>SP Travel - Travel Listing</title>
+	<link rel="icon" href="/favicon/favicon.png" type="image/x-icon" />
+	<!-- Bootstrap core CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<!-- Custom styles for this template -->
+	<link href="/css/modern-business.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+	<!-- Navigation -->
+	<nav class="navbar border-bottom border-light fixed-top navbar-expand-lg fixed-top">
+		<div class="col-12 container">
+			<a class="navbar-brand col-4" href="/"><span id="SP-brand">SP </span><span id="Travel-brand">Travel</span></a>
+			<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+				data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse col-8" id="navbarResponsive">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item">
+						<!-- Welcome / Search for travel listings -->
+						<a class="nav-link" href="/">Homepage</a>
+					</li>
+					<li class="nav-item">
+						<!-- Display all travel listings -->
+						<a class="nav-link" href="/travels/">Travel Listings</a>
+					</li>
+					<li id="logout-button-bg" class="nav-item hide-logged-out">
+						<!-- Logout button (hide when logged out) -->
+						<a class="nav-link" id="logout-button" href="#">Logout</a>
+					</li>
+					<li class="nav-item hide-logged-in">
+						<!-- Login page (hide when logged in) -->
+						<a class="nav-link" href="/login/">Login</a>
+					</li>
+					<li class="nav-item hide-logged-out">
+						<!-- User's account page (hide when logged out) (fill in with username when logged in) -->
+						<a class="nav-link" href="/users/" id="account-button">User</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<!-- Content -->
+	<div id="content" class="row justify-content-center">
+		<!-- Welcome to travel listing -->
+        <h1 id="intro" class="col-10 my-4 px-0">Travel Listing</h1>
+        <div id="details" class="col-10 row mb-3 py-2 travel-listing-section border border-light">
+			<p class="no-items h4 mt-2">The details of this travel package are not available.</p>
+        </div>
+        <h1 class="col-10 my-4 px-0">Itinerary Information</h1>
+        <div id="itinerary" class="col-10 row mb-3 px-3 travel-listing-section border border-light">
+			<p class="no-items h4 mt-2">This travel package does not yet have an itinerary.</p>
+		</div>
+        <h1 class="col-10 my-4 px-0">Images</h1>
+		<div id="images" class="col-10 px-0 row  mb-3 travel-listing-section border border-light">
+			<p class="no-items h4 mt-2 px-3">This travel package does not yet have any images.</p>
+			<div id="travel-listing-images" class="carousel slide" data-ride="carousel">
+			</div>
+		</div>
+		<h1 class="col-10 my-4 px-0">Reviews</h1>
+		<div id="reviews" class="col-10 row mb-3 travel-listing-section border border-light">
+			<form id="add-review" name="add-review" class="col-12 pt-2 px-0" enctype="multipart/form-data" method="POST" novalidate>
+				<textarea id="review" class="col-12 form-control mb-2" rows="2" placeholder="Enter your review of this tour package."></textarea>
+				<input id="rating" class="col-12 form-control mb-2" placeholder="Enter your score of this tour package."></input>
+				<p id="rating-invalid" class="h5 invalid-message text-danger">Please enter the score.</p>
+				<p id="login-invalid" class="h5 invalid-message text-danger">You must be logged in to submit a review.</p>
+				<p id="review-invalid" class="h5 invalid-message text-danger">You have already left a review here.</p>
+				<button type="submit" class="col-4 my-2 h3 btn submit-buttons">Post</button>
+			</form>
+			<p class="no-items h4 mt-2">This travel package does not yet have any reviews.</p>
+		</div>
+        <h1 class="col-10 my-4 px-0">Promotions</h1>
+        <div id="promotions" class="col-10 row mb-3 travel-listing-section border border-light">
+			<p class="no-items h4 mt-2">This travel package does not yet have any promotions.</p>
+		</div>
+		<div class="col-10 row mb-3 px-0">
+			<button id="book-button" type="button" class="col-12 col-sm-4 mb-2 btn submit-buttons">Book</button>
+			<p id="booked" class="h5 col-12 invalid-message text-danger px-0">You have already booked this tour package.</p>
+			<p id="login1-invalid" class="h5 col-12 invalid-message text-danger px-0">You must be looged in to book a tour package.</p>
+		</div>
+    </div>
+
+	<!-- Footer -->
+	<footer class="row mx-0 p-0 border-top border-light justify-content-center pt-3 ">
+		<div id="social" class="col-12 col-sm-6 col-md-4 text-center footerThings mb-4">
+			<p class="footer-heads h5 font-weight-bold"> Social Media </p>
+			<p class="mb-2"><a href="https://www.instagram.com/singaporepoly/"><img
+						src="/social_media_icons/instagram.png" class="img-thumbnail p-0 border-dark"
+						alt="Instagram logo" /> @SP_Travel_Official </a></p>
+			<p class="mb-0"><a href="https://twitter.com/SingaporePoly"><img src="/social_media_icons/twitter.png"
+						class="img-thumbnail p-0 border-dark" alt="Twitter logo" /> @SP_Travel_Official </a></p>
+		</div>
+		<div id="hq" class="col-12 col-sm-6 col-md-4 text-center footerThings mb-4">
+			<p class="footer-heads h5 font-weight-bold"> Headquarters </p>
+			<address class="font-italic mb-0"> 108 Gerald Drive #04-38, 799035, Singapore </address>
+		</div>
+		<div id="contact" class="col-12 col-sm-6 col-md-4 text-center footerThings mb-4">
+			<p class="footer-heads h5 font-weight-bold"> Contact Details </p>
+			<p class="mb-2"> E-mail address: <a href="mailto: contact@sp_travel.com"> contact@sp_travel.com </a></p>
+			<p class="mb-0"> Number: <a href="tel: +65 1234 5678">+65 1234 5678</a></p>
+		</div>
+		<div id="footer-bottom" class="mb-1 col-12">
+			<div class="row justify-content-center">
+				<p class="col-6 col-md-4 mb-1 text-center">Copyright &copy; 2020 SP Travel Inc. All rights reserved.</p>
+			</div>
+		</div>
+	</footer>
+
+	<!--JavaScript files for website to run-->
+	<div>
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+			integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+			integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+			crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+			integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+			crossorigin="anonymous"></script>
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	</div>
+
+	<!-- Custom JavaScript files -->
+	<div>
+		<script src="/js/importantVariables.js"></script>
+		<script src="/js/logEffects.js"></script>
+		<script src="/js/logOut.js"></script>
+		<!-- Get information on the travel listing -->
+        <script>
+			function fullMonth (partMonth) {
+				var shortFull = {
+					"Jan": "January",
+					"Feb": "February",
+					"Mar": "March",
+					"Apr": "April",
+					"May": "May",
+					"Jun": "June",
+					"Jul": "July",
+					"Aug": "August",
+					"Sep": "September",
+					"Oct": "October",
+					"Nov": "November",
+					"Dec": "December"
+				};
+				return shortFull[partMonth];
+			}
+			function timeStampTwelveHourClock (timeStampString) {
+				timeStampString.amOrPm = "AM";
+				timeStampString.getHoursInAmPm = () => {
+					if (timeStampString.getHours() >= 12) {
+						timeStampString.amOrPm = "PM";
+					}
+					if (timeStampString.getHours() % 12 == 0) {
+						return 12;
+					}
+					return timeStampString.getHours() % 12;
+				}
+				timeStampString.dateInGB = () => {
+					return `${timeStampString.getDate()}/${timeStampString.getMonth() + 1}/${timeStampString.getFullYear()}`;
+				}
+				timeStampString.showTimeInAmPm = () => {
+					return `${timeStampString.getHoursInAmPm()}:${timeStampString.getMinutes().toString().padStart(2, "0")} ${timeStampString.amOrPm}`;
+				}
+				return timeStampString;
+			}
+			var travelId = url.pathname.split("/").filter((string) => string !== "").slice(-1)[0];
+            // get info about travel listing
+            axios.get(`${baseUrl}/travels/${travelId}/`)
+                .then((response) => {
+					var details = response.data;
+					if (details !== "") {
+						$("#details").empty();
+					} else {
+						return;
+					}
+					$("title").text(`SP Travel - ${details.title}`);
+                    $("#intro").text(`${details.title} | ${details.country}`);
+					$("#details").append(`<p class="col-9 px-0 pt-1 h4">Cost: $${parseFloat(details.price).toFixed(2)}</p>`);
+					var createdAt = timeStampTwelveHourClock(new Date(Date.parse(details.created_at)));
+					$("#details").append(`<p class="col-3 h6 px-0 text-right">Posted: ${createdAt.dateInGB()}<br>${createdAt.showTimeInAmPm()}</p>`);
+					$("#details").append(`<p class="col-9 px-0 pb-3 h4">Departure: ${fullMonth(details.travel_period.split(" ")[0])} ${details.travel_period.split(" ")[1]}</p>`);
+					$("#details").append(`<p class="col-12 px-0 h4">Description:</p>\n<p class="col-12 px-0 h4">${details.description}</p>`);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+            // get itinerary of travel listing
+            axios.get(`${baseUrl}/travels/${travelId}/itineraries/`)
+                .then((response) => {
+					var itineraryItems = response.data;
+					if (itineraryItems.length > 0) {
+						$("#itinerary").empty();
+					}
+					itineraryItems.forEach((itineraryItem) => {
+						$("#itinerary").append(`<div class="col-12 px-0 pb-1 mt-2 h4"><p class="font-weight-bold mb-0">Day ${itineraryItem.day}:</p><p class="mb-0">${itineraryItem.activity}</p></div>`);
+					});
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+            // get images of travel listing
+            axios.get(`${baseUrl}/travels/${travelId}/images/`)
+                .then((response) => {
+					imagesData = response.data[1];
+					if (imagesData.length > 0) {
+						$("#images").empty();
+						var carouselHtml = 
+							`<div id="travel-listing-images" class="carousel slide w-100" data-ride="carousel">
+								<ol class="carousel-indicators">
+								</ol>
+								<div class="carousel-inner">
+								</div>
+								<a class="carousel-control-prev" href="#travel-listing-images" role="button" data-slide="prev">
+									<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+									<span class="sr-only">Previous</span>
+								</a>
+								<a class="carousel-control-next" href="#travel-listing-images" role="button" data-slide="next">
+									<span class="carousel-control-next-icon" aria-hidden="true"></span>
+									<span class="sr-only">Next</span>
+								</a>
+							</div>`;
+						$("#images").append(carouselHtml);
+					}
+					imagesData.forEach((imageData, index) => {
+						var carouselIndicatorHtml = `<li data-target="#travel-listing-images" data-slide-to="${index}"></li>`;
+						var carouselInnerHtml = 
+							`<div class="carousel-item">
+								<img class="border border-light d-block" src="${baseUrl}/travels/images/${imageData.image_id}" alt="image ${index}">
+							</div>`;
+						if (index == 0) {
+							carouselIndicatorHtml = `<li data-target="#travel-listing-images" data-slide-to="${index}" class="active"></li>`;
+							carouselInnerHtml = 
+							`<div class="carousel-item active">
+								<img class="border border-light d-block" src="${baseUrl}/travels/images/${imageData.image_id}" alt="image ${index}">
+							</div>`;
+						}
+						$("#travel-listing-images .carousel-indicators").append(carouselIndicatorHtml);
+						$("#travel-listing-images .carousel-inner").append(carouselInnerHtml);
+					});
+                })
+                .catch((err) => {
+                    console.log(err);
+				});
+			// get reviews of travel listing
+			axios.get(`${baseUrl}/travels/${travelId}/reviews/`)
+                .then((response) => {
+					reviews = response.data;
+					if (reviews.length > 0) {
+						$("#reviews .no-items").remove();
+					}
+                    reviews.forEach((review) => {
+						axios.get(`${baseUrl}/users/${review.user_id}`)
+							.then((response) => {
+								var reviewHtml = 
+									`<div class="col-12 border border-light px-2 my-1">
+										<p class="h4 font-weight-bold">${response.data.username} | ${parseFloat(review.rating).toFixed(2)}</p>	
+										<p class="h4">${review.content}</p>			
+									</div>`;
+								$("#reviews").append(reviewHtml);
+							})
+							.catch((err) => {
+								console.log(err);
+							});
+					});
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+            // get promotions of travel listing
+            axios.get(`${baseUrl}/travels/${travelId}/promotions/`)
+                .then((response) => {
+					promotions = response.data;
+					if (promotions.length > 0) {
+						$("#promotions").empty();
+					}
+					promotions.forEach((promotion) => {
+						var promotionStart = timeStampTwelveHourClock(new Date(Date.parse(promotion.promotion_start)));
+						var promotionEnd = timeStampTwelveHourClock(new Date(Date.parse(promotion.promotion_end)));
+						var promotionHtml = 
+							`<div class="col-12 px-0 border border-light px-2 my-1">
+								<p class="h4 font-weight-bold">${promotionStart.dateInGB()} ${promotionStart.showTimeInAmPm()} to ${promotionEnd.dateInGB()} ${promotionEnd.showTimeInAmPm()}</p>	
+								<p class="h4">Discount Percentage: ${promotion.discount_percentage}%</p>
+								<p class="h4">Dicounted Cost: $${parseFloat(promotion.discounted_price).toFixed(2)}</p> 			
+							</div>`;
+						$("#promotions").append(promotionHtml);						
+					});
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+		</script>
+		<!-- To submit a review -->
+		<script>
+			// submit review
+			$("#add-review").submit((event) => {
+				$(".invalid-message").hide();
+				event.preventDefault();
+				var content = $("#review").val();
+				var rating = $("#rating").val();
+				var ratingRegex = new RegExp("^\\d*\\.?\\d*$");
+				if (loggedInUserId === null) {
+					$("#login-invalid").show();
+					return;
+				}
+				if (rating.match(ratingRegex) === null) {
+					$("#rating-invalid").show();
+					return;
+				} 
+				axios.post(`${baseUrl}/users/${loggedInUserId}/travels/${travelId}/reviews/`, {
+					"content": content,
+					"rating": rating
+				}, {"headers": {"authorization": `Bearer ${token}`}})
+					.then((response) => {
+						$("#add-review")[0].reset();
+						location.reload();
+					})
+					.catch((err) => {
+						if (err.response.status === 422) {
+							$("#review-invalid").show();
+						}
+						console.log(err);
+					})
+			});
+		</script>
+		<!-- To book and add to user's cart -->
+		<script>
+			$(document).on("click", "#book-button", () => {
+				$(".invalid-message").hide();
+				if (loggedInUserId === null) {
+					$("#login1-invalid").show();
+					return;
+				}
+				axios.post(`${baseUrl}/users/${loggedInUserId}/travels/${travelId}/carts/`,
+				{}, {"headers": {"authorization": `Bearer ${token}`}})
+					.then((response) => {
+						window.location.href = `/users/`;
+					})
+					.catch((err) => {
+						console.log(err.response);
+						if (err.response.status === 422) {
+							$("#booked").show();
+						}
+					});
+			});
+		</script>
+	</div>
+
+</body>
+
+</html>

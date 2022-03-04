@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<title>SP Travel - Manage Tour Package</title>
+	<link rel="icon" href="/favicon/favicon.png" type="image/x-icon"/>
+	<!-- Bootstrap core CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<!-- Custom styles for this template -->
+	<link href="/css/modern-business.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+
+	<!-- Navigation -->
+	<nav class="navbar border-bottom border-light fixed-top navbar-expand-lg fixed-top">
+		<div class="col-12 container">
+			<a class="navbar-brand col-4" href="/"><span id="SP-brand">SP </span><span id="Travel-brand">Travel</span></a>
+			<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+				data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse col-8" id="navbarResponsive">
+				<ul class="navbar-nav ml-auto">
+					<li id="logout-button-bg" class="nav-item hide-logged-out">
+						<!-- Logout button (hide when logged out) -->
+						<a class="nav-link" id="logout-button" href="#">Logout</a>
+					</li>
+					<li class="nav-item hide-logged-in">
+						<!-- Login page (hide when logged in) -->
+						<a class="nav-link" href="/login/">Login</a>
+					</li>
+					<li class="nav-item hide-logged-out">
+						<!-- User's account page (hide when logged out) (fill in with username when logged in) -->
+						<a class="nav-link" href="/users/" id="account-button">User</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<!-- Content -->
+	<div id="content" class="row justify-content-center">
+		<h1 class="col-10 my-4 px-0">Add Itinerary</h1>
+		<!-- Fill in with details of new itinerary -->
+		<form name="add-itinerary" id="add-itinerary" class="col-10 w-100 my-2 px-0" enctype="multipart/form-data" method="POST" novalidate>
+			<label for="day" class="h4">Day</label>
+			<input id="day" class="form-control mb-2" name="day" placeholder="Enter the day of the itinerary">
+			<p id="day-invalid" class="h5 invalid-message text-danger">Please enter the day.</p>
+			<label for="activity" class="h4">Activity</label>
+			<input id="activity" class="form-control mb-2" name="activity" placeholder="Enter the activity of the itinerary">
+			<button type="submit" class="col-4 my-2 h3 btn submit-buttons">Add</button>
+		</form>
+		<h1 class="col-10 my-4 px-0">Edit Details</h1>
+        <!-- Fill in details for new travel listing -->
+        <form name="edit-form" id="edit-form" class="col-10 w-100 my-2 px-0" enctype="multipart/form-data" method="POST" novalidate>
+			<div class="control-group form-group">
+				<div class="controls">
+                    <label for="title" class="h4">Title</label>
+					<input id="title" class="form-control mb-2" name="title" placeholder="Enter the title of the tour package">
+					<p id="title-invalid" class="h5 invalid-message text-danger">Please enter a title.</p>
+					<label for="country-select" class="h4">Destination Country</label>
+					<select id="country-select" class="form-control mb-2" name="country-select"> <!---->
+					</select>
+					<label for="max-cost" class="h4">Cost (SGD)</label>
+					<input id="max-cost" class="form-control mb-2" name="country-select" placeholder="Enter the cost, in SGD">
+					<p id="max-cost-invalid" class="h5 invalid-message text-danger">Please enter a cost.</p>
+					<div class="preferred-time col-4 pl-0 mr-3">
+						<label for="preferred-month" class="h4">Month</label>
+						<select id="preferred-month" class="form-control mb-2" name="preferred-month">
+						</select>
+					</div>
+					<div class="preferred-time col-4 pl-0 ml-3">
+						<label for="preferred-year" class="h4">Year</label>
+						<input id="preferred-year" class="form-control mb-2" name="preferred-year" placeholder="Enter the year of the travel period">
+						<p id="preferred-year-invalid" class="h5 invalid-message text-danger">Please enter the travel period year.</p>
+                    </div>
+                    <label for="description" class="h4 col-12 pl-0">Description</label>
+					<textarea id="description" class="form-control mb-2" rows="5" placeholder="Enter the description of the tour package."></textarea>
+					<p id="edit-invalid" class="h5 invalid-message text-danger">A tour package of that name already exists.</p>
+				</div>
+			</div>
+			<!-- Submit search queries -->
+            <button type="submit" class="col-4 my-2 h3 btn submit-buttons">Edit</button>
+            <button type="button" id="delete-button" class="col-4 my-2 h3 btn btn-danger">Delete</button>
+		</form>
+	</div>
+
+	<!--JavaScript files for website to run-->
+	<div>
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+			integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+			integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+			crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+			integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+			crossorigin="anonymous"></script>
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	</div>
+
+	<!-- Custom JavaScript files -->
+	<div>
+		<script src="/js/importantVariables.js"></script>
+		<script src="/js/logEffects.js"></script>
+		<script src="/js/logOut.js"></script>
+        <!-- Fill in dropdown inputs with available options -->
+        <script>
+            const countries = ["China", "India", "United States of America", "Indonesia", "Malaysia", "Pakistan", "Brazil", "Poland", "Armenia", "Japan", "Germany", "Singapore"].sort();
+            countries.forEach((country) => {
+                var countryHtml = 
+                    `<option value="${country}">${country}</option>`;
+                $("#country-select").append(countryHtml);
+            });
+            const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+            months.forEach((month) => {
+                var monthHtml = 
+                    `<option value="${month.slice(0, 3)}">${month}</option>`;
+                $("#preferred-month").append(monthHtml);
+            });
+		</script>
+        <!-- Functionality for editing the travel listing and others -->
+        <script>
+			function timeStampTwelveHourClock (timeStampString) {
+				timeStampString.amOrPm = "AM";
+				timeStampString.getHoursInAmPm = () => {
+					if (timeStampString.getHours() >= 12) {
+						timeStampString.amOrPm = "PM";
+					}
+					if (timeStampString.getHours() % 12 == 0) {
+						return 12;
+					}
+					return timeStampString.getHours() % 12;
+				}
+				timeStampString.dateInGB = () => {
+					return `${timeStampString.getDate()}/${timeStampString.getMonth() + 1}/${timeStampString.getFullYear()}`;
+				}
+				timeStampString.showTimeInAmPm = () => {
+					return `${timeStampString.getHoursInAmPm()}:${timeStampString.getMinutes().toString().padStart(2, "0")} ${timeStampString.amOrPm}`;
+				}
+				return timeStampString;
+			}
+			// Verify that user is an admin
+			axios.get(`${baseUrl}/admin/verify`, {"headers": {"authorization": `Bearer ${token}`}})
+				.then((response) => {
+                    // Get the travel listing ID
+                    var travelId = url.pathname.split("/").filter((string) => string !== "").slice(-1)[0];
+					// Get travel listings and display them
+					axios.get(`${baseUrl}/travels/${travelId}`)
+						.then((response) => {
+							var travel = response.data;
+							$("title").text(`SP Travel - Manage ${travel.title}`);
+                            travel.month = travel.travel_period.split(" ")[0];
+                            travel.year = travel.travel_period.split(" ")[1];
+                            $("#title").attr("value", `${travel.title}`);
+                            $(`#country-select option[value=\"${travel.country}\"]`).prop("selected", "selected");
+                            $("#max-cost").attr("value", `${parseFloat(travel.price).toFixed(2)}`);
+                            $(`#preferred-month option[value=\"${travel.month}\"]`).prop("selected", "selected");
+                            $("#preferred-year").attr("value", `${travel.year}`);
+                            $("#description").text(`${travel.description}`);
+                        })
+						.catch((err) => {
+                            console.log(err);
+						})
+					// Edits travel listing when form is submitted
+					$("#edit-form").submit((event) => {
+						$(".invalid-message").hide();
+						event.preventDefault();
+                        var title = $("#title").val();
+						var country = $("#country-select").val();
+						var cost = $("#max-cost").val();
+						var month = $("#preferred-month").val();
+						var year = $("#preferred-year").val();
+						var description = $("#description").val();
+						var yearRegex = new RegExp("^\\d+$");
+						var costRegex = new RegExp("^\\d*\\.?\\d*$");
+						if (title === "") {
+							$("#title-invalid").show();
+							return;
+						}
+						if (cost.match(costRegex) === null) {
+							$("#max-cost-invalid").show();
+							return;
+						}
+						if (year.match(yearRegex) === null) {
+							$("#preferred-year-invalid").show();
+							return;
+						} 
+						cost = parseFloat(cost);
+						axios.put(`${baseUrl}/travels/${travelId}`, {
+							"title": title,
+							"description": description,
+							"price": cost,
+							"country": country,
+							"travel_period": `${month} ${year}`
+						}, {"headers": {"authorization": `Bearer ${token}`}})
+							.then((response) => {
+								window.location.href = `/admin/`;
+							})
+							.catch((err) => {
+								console.log(err);
+								if (err.response.status === 422) {
+									$("#edit-invalid").show();
+								}
+							})
+					});	
+                    // Deletes travel listing when button is clicked
+					$(document).on("click", "#delete-button", () => {
+						axios.delete(`${baseUrl}/travels/${travelId}`, {"headers": {"authorization": `Bearer ${token}`}})
+							.then((response) => {
+								window.location.href = `/admin`;
+							})
+							.catch((err) => {
+								console.log(err);
+							});	
+					});
+					// Adds an itinerary for the travel itinerary when form is submitted
+					$("#add-itinerary").submit((event) => {
+						$(".invalid-message").hide();
+						event.preventDefault();
+						var day = $("#day").val();
+						var activity = $("#activity").val();
+						var dayRegex = new RegExp("^\\d+$");
+						if (day.match(dayRegex) === null) {
+							$("#day-invalid").show();
+							return;
+						} 
+						axios.post(`${baseUrl}/travels/${travelId}/itineraries/`, {
+							"day": day,
+							"activity": activity
+						}, {"headers": {"authorization": `Bearer ${token}`}})
+							.then((response) => {
+								window.location.href = `/admin/`;
+							})
+							.catch((err) => {
+								console.log(err);
+							});
+					});
+                })
+				.catch((err) => {
+					console.log(err);
+					if (err.response.status === 401 || err.response.status === 403) {
+						window.location.href = "/noPermission";
+					}
+				})					
+        </script>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<title>SP Travel - Add Tour Package</title>
+	<link rel="icon" href="/favicon/favicon.png" type="image/x-icon"/>
+	<!-- Bootstrap core CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<!-- Custom styles for this template -->
+	<link href="/css/modern-business.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+
+	<!-- Navigation -->
+	<nav class="navbar border-bottom border-light fixed-top navbar-expand-lg fixed-top">
+		<div class="col-12 container">
+			<a class="navbar-brand col-4" href="/"><span id="SP-brand">SP </span><span id="Travel-brand">Travel</span></a>
+			<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+				data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse col-8" id="navbarResponsive">
+				<ul class="navbar-nav ml-auto">
+					<li id="logout-button-bg" class="nav-item hide-logged-out">
+						<!-- Logout button (hide when logged out) -->
+						<a class="nav-link" id="logout-button" href="#">Logout</a>
+					</li>
+					<li class="nav-item hide-logged-in">
+						<!-- Login page (hide when logged in) -->
+						<a class="nav-link" href="/login/">Login</a>
+					</li>
+					<li class="nav-item hide-logged-out">
+						<!-- User's account page (hide when logged out) (fill in with username when logged in) -->
+						<a class="nav-link" href="/users/" id="account-button">User</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<!-- Content -->
+	<div id="content" class="row justify-content-center">
+		<!-- Introduction to Web Portal -->
+		<h1 id="intro" class="col-10 my-4 px-0">Add Tour Package</h1>
+        <!-- Fill in details for new travel listing -->
+        <form name="add-form" id="add-form" class="col-10 w-100 my-2 px-0" enctype="multipart/form-data" method="POST" novalidate>
+			<div class="control-group form-group">
+				<div class="controls">
+                    <label for="title" class="h4">Title</label>
+					<input id="title" class="form-control mb-2" name="title" placeholder="Enter the title of the tour package">
+					<p id="title-invalid" class="h5 invalid-message text-danger">Please enter a title.</p>
+					<label for="country-select" class="h4">Destination Country</label>
+					<select id="country-select" class="form-control mb-2" name="country-select">
+					</select>
+					<label for="max-cost" class="h4">Cost (SGD)</label>
+					<input id="max-cost" class="form-control mb-2" name="country-select" placeholder="Enter the cost, in SGD">
+					<p id="max-cost-invalid" class="h5 invalid-message text-danger">Please enter a cost.</p>
+					<div class="preferred-time col-4 pl-0 mr-3">
+						<label for="preferred-month" class="h4">Month</label>
+						<select id="preferred-month" class="form-control mb-2" name="preferred-month">
+						</select>
+					</div>
+					<div class="preferred-time col-4 pl-0 ml-3">
+						<label for="preferred-year" class="h4">Year</label>
+						<input id="preferred-year" class="form-control mb-2" name="preferred-year" placeholder="Enter the year of the travel peiod">
+						<p id="preferred-year-invalid" class="h5 invalid-message text-danger">Please enter the travel period year.</p>
+                    </div>
+                    <label for="description" class="h4 col-12 pl-0">Description</label>
+                    <textarea id="description" class="form-control mb-2" rows="5" placeholder="Enter the description of the tour package."></textarea>
+                    <label for="image" class="h4 col-12 pl-0">Image</label>
+					<input id="image" name="image" class="form-control mb-2" type="file" accept="image/jpeg" onchange="readURL(this);">
+					<img id="image-show" class="border border-light img-fluid" src="#" alt="Travel Listing Image" width="900px" height="600px" style="display: none;">
+					<input id="image-name" class="form-control my-2" name="image-name" placeholder="Enter the name of the image">
+					<p id="image-name-invalid" class="h5 invalid-message text-danger">Please enter a name for the image.</p>
+					<p id="edit-invalid" class="h5 invalid-message text-danger">A tour package of that name already exists.</p>
+				</div>
+			</div>
+			<!-- Submit search queries -->
+			<button type="submit" class="col-4 my-2 h3 btn submit-buttons">Add</button>
+		</form>
+	</div>
+
+	<!--JavaScript files for website to run-->
+	<div>
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+			integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+			integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+			crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+			integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+			crossorigin="anonymous"></script>
+		<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	</div>
+
+	<!-- Custom JavaScript files -->
+	<div>
+		<script src="/js/importantVariables.js"></script>
+		<script src="/js/logEffects.js"></script>
+		<script src="/js/logOut.js"></script>
+        <!-- Fill in dropdown inputs with available options -->
+        <script>
+            const countries = ["China", "India", "United States of America", "Indonesia", "Malaysia", "Pakistan", "Brazil", "Poland", "Armenia", "Japan", "Germany", "Singapore"].sort();
+            countries.forEach((country) => {
+                var countryHtml = 
+                    `<option value="${country}">${country}</option>`;
+                $("#country-select").append(countryHtml);
+            });
+            const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+            months.forEach((month) => {
+                var monthHtml = 
+                    `<option value="${month.slice(0, 3)}">${month}</option>`;
+                $("#preferred-month").append(monthHtml);
+            });
+		</script>
+		<!-- Show image when uploading -->
+		<script>
+			function readURL(input) {
+				if (input.files && input.files[0]) {
+					var reader = new FileReader();
+					reader.onload = function (e) {
+						$("#image-show").show();
+						$("#image-show").attr("src", e.target.result);
+					};
+					reader.readAsDataURL(input.files[0]);
+				}
+			}
+		</script>
+        <!-- Add Tour Package Form Validation and Submission -->
+        <script>
+			function timeStampTwelveHourClock (timeStampString) {
+				timeStampString.amOrPm = "AM";
+				timeStampString.getHoursInAmPm = () => {
+					if (timeStampString.getHours() >= 12) {
+						timeStampString.amOrPm = "PM";
+					}
+					if (timeStampString.getHours() % 12 == 0) {
+						return 12;
+					}
+					return timeStampString.getHours() % 12;
+				}
+				timeStampString.dateInGB = () => {
+					return `${timeStampString.getDate()}/${timeStampString.getMonth() + 1}/${timeStampString.getFullYear()}`;
+				}
+				timeStampString.showTimeInAmPm = () => {
+					return `${timeStampString.getHoursInAmPm()}:${timeStampString.getMinutes().toString().padStart(2, "0")} ${timeStampString.amOrPm}`;
+				}
+				return timeStampString;
+			}
+			// Verify that user is an admin
+			axios.get(`${baseUrl}/admin/verify`, {"headers": {"authorization": `Bearer ${token}`}})
+				.then((response) => {
+					$("#add-form").submit((event) => {
+						$(".invalid-message").hide();
+						event.preventDefault();
+						var title = $("#title").val();
+						var country = $("#country-select").val();
+						var cost = $("#max-cost").val();
+						var month = $("#preferred-month").val();
+						var year = $("#preferred-year").val();
+						var description = $("#description").val();
+						var image = $("#image")["0"].files["0"];
+						var imageName = $("#image-name").val();
+						var yearRegex = new RegExp("^\\d+$");
+						var costRegex = new RegExp("^\\d*\\.?\\d*$");
+						if (title === "") {
+							$("#title-invalid").show();
+							return;
+						}
+						if (cost.match(costRegex) === null) {
+							$("#max-cost-invalid").show();
+							return;
+						}
+						if (year.match(yearRegex) === null) {
+							$("#preferred-year-invalid").show();
+							return;
+						} 
+						if (imageName === "" && image !== undefined) {
+							$("#image-name-invalid").show();
+							return;
+						}
+						cost = parseFloat(cost);
+						axios.post(`${baseUrl}/travels/`, {
+							"title": title,
+							"description": description,
+							"price": cost,
+							"country": country,
+							"travel_period": `${month} ${year}`
+						}, {"headers": {"authorization": `Bearer ${token}`}})
+							.then((response) => {
+								if (image !== undefined) {
+									imageBody = new FormData();
+									imageBody.append("image_file", image);
+									imageBody.append("image_path", imageName);
+									axios.post(`${baseUrl}/travels/${response.data.travel_id}/images`, imageBody, 
+										{"headers": {"authorization": `Bearer ${token}`,
+													"Content-Type": "multipart/form-data"}
+										})
+										.then((response) => {})
+										.catch((err) => {
+											console.log(err);
+										})
+								}
+								window.location.href = `/admin/`;
+							})
+							.catch((err) => {
+								console.log(err);
+								if (err.response.status === 422) {
+									$("#edit-invalid").show();
+								}
+							})
+					});							
+				})	
+				.catch((err) => {
+					console.log(err);
+					if (err.response.status === 401 || err.response.status === 403) {
+						window.location.href = "/noPermission";
+					}
+				})					
+        </script>
+    </div>
+
+</body>
+
+</html>
