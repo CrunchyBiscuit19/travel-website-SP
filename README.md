@@ -4,12 +4,17 @@
 * Frontend design was referenced from a bootstrap template.
 
 ## Features
-* Persistent login using JWT tokens
-* Filter travel listings
+* Search travel listings
+![](./Others/Showcase1.png)
 * View travel listing and itinerary info
-* Review listings
-* Add / Remove / Modify travel listings and itineraries as administrator
+* Add / View travel listing reviews
 * Upload images to the travel listings
+* Promotions can dynamically affect pricing of travel listings
+![](./Others/Showcase2.png)
+* Add / Delete / Modify travel listings and itineraries as administrator
+![](./Others/Showcase3.png)
+![](./Others/Showcase4.png)
+* Persistent login using JWT tokens
 * Asynchronous programming
 
 ## Setup
